@@ -4,20 +4,27 @@
   --mobile-max-width: 768px;
 
   /* Calculated variables based on the base size */
-  --btn-height: calc(var(--btn-base-size) / 1.72); /* 50px if base size is 186px */
-  --btn-font-size: 20px; /* Constant, not based on --btn-base-size */
-  --btn-border-offset: calc(var(--btn-base-size) / 23.25); /* 8px if base size is 186px */
-  --btn-border-width: 1px; /* Constant, not based on --btn-base-size */
+  --btn-height: calc(var(--btn-base-size) / 1.72);
+  /* 50px if base size is 186px */
+  --btn-font-size: 20px;
+  /* Constant, not based on --btn-base-size */
+  --btn-border-offset: calc(var(--btn-base-size) / 23.25);
+  /* 8px if base size is 186px */
+  --btn-border-width: 1px;
+  /* Constant, not based on --btn-base-size */
 
-  --playing-card-width: 100px;
-  --playing-card-height: 150px;
-  --playing-card-font-size: 12px;
+  --playing-card-width: 70px;
+  --playing-card-height: 105px;
+  --playing-card-font-size: 7px;
 }
 
 #title {
-    font-family: Cinzel;
-    font-size: 2em;
-    text-align: center;
+  font-family: Cinzel;
+  text-align: center;
+}
+
+#title h1 {
+  font-size: 70px;
 }
 
 h1 {
@@ -25,12 +32,10 @@ h1 {
 }
 
 body {
-  background: linear-gradient(
-    to top,
-    rgba(40, 62, 81, 1) 0%,
-    rgba(10, 35, 66, 1) 40%,
-    #111 100%
-  );
+  background: linear-gradient(to top,
+      rgba(40, 62, 81, 1) 0%,
+      rgba(10, 35, 66, 1) 40%,
+      #111 100%);
 }
 
 #board {
@@ -68,54 +73,42 @@ input {
   display: block;
   /*start background shamelessly stolen from interwebs https://lea.verou.me/css3patterns/#japanese-cube*/
   background-color: #556;
-  background-image: linear-gradient(
-      30deg,
+  background-image: linear-gradient(30deg,
       #445 12%,
       transparent 12.5%,
       transparent 87%,
       #445 87.5%,
-      #445
-    ),
-    linear-gradient(
-      150deg,
+      #445),
+    linear-gradient(150deg,
       #445 12%,
       transparent 12.5%,
       transparent 87%,
       #445 87.5%,
-      #445
-    ),
-    linear-gradient(
-      30deg,
+      #445),
+    linear-gradient(30deg,
       #445 12%,
       transparent 12.5%,
       transparent 87%,
       #445 87.5%,
-      #445
-    ),
-    linear-gradient(
-      150deg,
+      #445),
+    linear-gradient(150deg,
       #445 12%,
       transparent 12.5%,
       transparent 87%,
       #445 87.5%,
-      #445
-    ),
-    linear-gradient(
-      60deg,
+      #445),
+    linear-gradient(60deg,
       #99a 25%,
       transparent 25.5%,
       transparent 75%,
       #99a 75%,
-      #99a
-    ),
-    linear-gradient(
-      60deg,
+      #99a),
+    linear-gradient(60deg,
       #99a 25%,
       transparent 25.5%,
       transparent 75%,
       #99a 75%,
-      #99a
-    );
+      #99a);
   background-size: 80px 140px;
   background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
   /*end stolen background*/
@@ -156,10 +149,11 @@ input {
   flex: 1;
 }
 
-input:checked + label::before {
+input:checked+label::before {
   transform: rotatey(-180deg);
 }
-input:checked + label .card-front {
+
+input:checked+label .card-front {
   transform: rotatey(0deg);
 }
 
@@ -182,27 +176,6 @@ input:checked + label .card-front {
   bottom: 0;
   right: 0;
   transform: rotate(180deg);
-}
-
-@media (max-width: 768px) {
-
-    :root{
-        --playing-card-width: 70px;
-        --playing-card-height: 105px;
-        --playing-card-font-size: 7px;
-    }
-
-  #language-toggle {
-    text-align: center;
-    padding-top: 5vh;
-  }
-}
-
-@media (min-width: 768px) {
-  #language-toggle {
-    padding: 5vh 10vh 0 0;
-    text-align: end;
-  }
 }
 
 .btn-1 {
@@ -237,4 +210,40 @@ input:checked + label .card-front {
 .btn:active {
   background-color: #acacbd;
   transform: translate(2px, 2px);
+}
+
+#language-toggle {
+  text-align: center;
+  padding-top: 5vh;
+}
+
+@media (max-width: 480px) {
+  #title h1 {
+    font-size: 30px;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 768px) {
+  #title h1 {
+    font-size: 40px;
+  }
+}
+
+@media (min-width: 768px) {
+
+  :root {
+    --playing-card-width: 100px;
+    --playing-card-height: 150px;
+    --playing-card-font-size: 12px;
+  }
+
+  #language-toggle {
+    padding: 5vh 10vh 0 0;
+    text-align: end;
+  }
+
+  #cardContainer {
+    width: 60%;
+    margin: 0 auto;
+  }
 }
