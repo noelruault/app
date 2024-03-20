@@ -1,0 +1,240 @@
+:root {
+  /* Base size variable */
+  --btn-base-size: 50px;
+  --mobile-max-width: 768px;
+
+  /* Calculated variables based on the base size */
+  --btn-height: calc(var(--btn-base-size) / 1.72); /* 50px if base size is 186px */
+  --btn-font-size: 20px; /* Constant, not based on --btn-base-size */
+  --btn-border-offset: calc(var(--btn-base-size) / 23.25); /* 8px if base size is 186px */
+  --btn-border-width: 1px; /* Constant, not based on --btn-base-size */
+
+  --playing-card-width: 100px;
+  --playing-card-height: 150px;
+  --playing-card-font-size: 12px;
+}
+
+#title {
+    font-family: Cinzel;
+    font-size: 2em;
+    text-align: center;
+}
+
+h1 {
+  color: white;
+}
+
+body {
+  background: linear-gradient(
+    to top,
+    rgba(40, 62, 81, 1) 0%,
+    rgba(10, 35, 66, 1) 40%,
+    #111 100%
+  );
+}
+
+#board {
+  display: flex;
+  flex-direction: column;
+}
+
+#cardContainer {
+  text-align: center;
+}
+
+input {
+  display: none;
+}
+
+.playing-card {
+  display: inline-block;
+}
+
+.playing-card label {
+  position: relative;
+  width: var(--playing-card-width);
+  height: var(--playing-card-height);
+  display: inline-block;
+  padding: 20px;
+  cursor: pointer;
+  font-family: cards;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.playing-card label::before {
+  background: #e3dfd4;
+  content: "";
+  display: block;
+  /*start background shamelessly stolen from interwebs https://lea.verou.me/css3patterns/#japanese-cube*/
+  background-color: #556;
+  background-image: linear-gradient(
+      30deg,
+      #445 12%,
+      transparent 12.5%,
+      transparent 87%,
+      #445 87.5%,
+      #445
+    ),
+    linear-gradient(
+      150deg,
+      #445 12%,
+      transparent 12.5%,
+      transparent 87%,
+      #445 87.5%,
+      #445
+    ),
+    linear-gradient(
+      30deg,
+      #445 12%,
+      transparent 12.5%,
+      transparent 87%,
+      #445 87.5%,
+      #445
+    ),
+    linear-gradient(
+      150deg,
+      #445 12%,
+      transparent 12.5%,
+      transparent 87%,
+      #445 87.5%,
+      #445
+    ),
+    linear-gradient(
+      60deg,
+      #99a 25%,
+      transparent 25.5%,
+      transparent 75%,
+      #99a 75%,
+      #99a
+    ),
+    linear-gradient(
+      60deg,
+      #99a 25%,
+      transparent 25.5%,
+      transparent 75%,
+      #99a 75%,
+      #99a
+    );
+  background-size: 80px 140px;
+  background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+  /*end stolen background*/
+}
+
+.playing-card label::before,
+.playing-card .card-front {
+  width: var(--playing-card-width);
+  height: var(--playing-card-height);
+  border-radius: 8px;
+  transition: 1s all;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.card-front {
+  background: #f2f2f2;
+  position: relative;
+  font-size: var(--playing-card-font-size);
+  padding: 20px;
+  box-sizing: border-box;
+  transform: rotatey(-180deg);
+  color: #444;
+  display: flex;
+  align-items: center;
+}
+
+.card-front span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 20%;
+  flex: 1;
+}
+
+input:checked + label::before {
+  transform: rotatey(-180deg);
+}
+input:checked + label .card-front {
+  transform: rotatey(0deg);
+}
+
+.card-front::before,
+.card-front::after {
+  /* font-size: var(--playing-card-font-size); */
+  position: absolute;
+  padding: 10px;
+  letter-spacing: 0.2em;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.card-front::before {
+  top: 0;
+  left: 0;
+}
+
+.card-front::after {
+  bottom: 0;
+  right: 0;
+  transform: rotate(180deg);
+}
+
+@media (max-width: 768px) {
+
+    :root{
+        --playing-card-width: 70px;
+        --playing-card-height: 105px;
+        --playing-card-font-size: 7px;
+    }
+
+  #language-toggle {
+    text-align: center;
+    padding-top: 5vh;
+  }
+}
+
+@media (min-width: 768px) {
+  #language-toggle {
+    padding: 5vh 10vh 0 0;
+    text-align: end;
+  }
+}
+
+.btn-1 {
+  position: relative;
+  width: var(--btn-base-size);
+  height: var(--btn-height);
+  color: #2e2e2e;
+  font-weight: 500;
+  font-size: var(--btn-font-size);
+  background-color: #fff;
+  margin-right: 10px;
+}
+
+.btn-1::before {
+  content: "";
+  position: absolute;
+  top: var(--btn-border-offset);
+  left: var(--btn-border-offset);
+  width: var(--btn-base-size);
+  height: var(--btn-height);
+  border: var(--btn-border-width) solid #9797a7;
+}
+
+.btn {
+  display: inline-block;
+  border: none;
+  background-color: #9797a7;
+  font-size: var(--btn-font-size);
+  cursor: pointer;
+}
+
+.btn:active {
+  background-color: #acacbd;
+  transform: translate(2px, 2px);
+}
