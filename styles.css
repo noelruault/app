@@ -1,6 +1,16 @@
 :root {
-    --item-hover-color: #2b1a4d;
-    --item-color: #7733ff;
+    --background-color: #282c34;
+    --default-item-svg-width: 70%;
+    --default-item-font-size: 0.8em;
+    --filter-item-on-hover: brightness(0.6);
+
+    --wrapper-grid-column-gap: 0.07em;
+    --itemSize: calc(5rem + 5vw);
+    --responsiveness: 0.4;
+    --x: 0%;
+    --y: 0%;
+    --translateX: calc(-50% - var(--x) * var(--responsiveness));
+    --translateY: calc(-50% - var(--y) * var(--responsiveness));
 }
 
 *,
@@ -12,6 +22,7 @@
 }
 
 body {
+    background: var(--background-color);
     position: fixed;
     overflow: hidden;
     height: 100vh;
@@ -19,12 +30,6 @@ body {
 }
 
 .wrapper {
-    --itemSize: calc(5rem + 5vw);
-    --responsiveness: 0.4;
-    --x: 0%;
-    --y: 0%;
-    --translateX: calc(-50% - var(--x) * var(--responsiveness));
-    --translateY: calc(-50% - var(--y) * var(--responsiveness));
     transform: translate(var(--translateX), var(--translateY));
     position: absolute;
     top: 50%;
@@ -34,7 +39,8 @@ body {
     font-size: var(--itemSize);
     grid-template-columns: repeat(14, 0.5em);
     grid-auto-rows: 0.5em;
-    grid-gap: 0 0.07em;
+    grid-row-gap: 0;
+    grid-column-gap: var(--wrapper-grid-column-gap);
     -ms-scroll-snap-type: mandatory;
     scroll-snap-type: mandatory;
 }
@@ -54,15 +60,6 @@ body {
     grid-column-start: 2;
 }
 
-.item::after {
-    height: 100%;
-    content: attr(data-text);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: var(--item-font-size, 0.8em);
-}
-
 .item {
     --scale: 1;
     grid-column-end: span 2;
@@ -70,7 +67,6 @@ body {
     height: 1em;
     width: 1em;
     border-radius: 50%;
-    background-color: var(--item-color);
     will-change: transform;
     transform: scale(var(--scale));
     opacity: calc(var(--scale) * var(--scale));
@@ -80,14 +76,23 @@ body {
 }
 
 .item:hover {
-    background-color: var(--item-hover-color);
+    filter: var(--filter-item-on-hover);
 }
 
 .item svg {
     display: flex;
     margin: 0 auto;
-    width: var(--item-svg-width, 70%);
+    width: var(--item-svg-width, var(--default-item-svg-width));
     height: 100%;
+}
+
+.item::after {
+    height: 100%;
+    content: attr(data-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--item-font-size, var(--default-item-font-size));
 }
 
 @media screen and (max-width: 1000px) {
