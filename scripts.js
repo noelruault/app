@@ -74,3 +74,14 @@ document.body.addEventListener("scroll", function (e) {
 
     animateChildren(wrapper, screenCenter);
 });
+
+window.onload = function () {
+    // Get the div element
+    const div = document.getElementById('center');
+
+    // Check if the div element exists
+    if (div) {
+        // Scroll the div into view, centered vertically, with smooth behavior
+        div.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+    }
+};

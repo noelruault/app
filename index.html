@@ -41,6 +41,8 @@
                 const currentItem = items.find(item => item.index === i) || {};
                 div.setAttribute('data-text', currentItem.text || '');
 
+                if (i==18){ div.setAttribute('id', 'center') }
+
                 if (currentItem.size) {
                     div.style.setProperty('--item-font-size', currentItem.size);
                     div.style.setProperty('--item-svg-width', currentItem.size);
